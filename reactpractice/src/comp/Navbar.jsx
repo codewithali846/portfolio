@@ -16,8 +16,7 @@ const Navbar = () => {
   { path: "/resume", label: "RESUME" },
   { path: "/pricing", label: "PRICING" },
   { path: "/blog", label: "BLOGS" },
-  { path: "/contacts", label: "CONTACTS" },
-  { path: "/admin", label: "ADMIN" }, // ✅ updated
+  { path: "/contacts", label: "CONTACTS" }
 ];
 
 
