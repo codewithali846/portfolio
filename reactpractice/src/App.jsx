@@ -21,7 +21,6 @@ function App() {
           <BrowserRouter>
             <Navbar />
             <Routes>
-              <Route path="/" element={<Home />} />
               <Route path="/features" element={<Features />} />
               <Route path="/pricing" element={<Pricing />} />
               <Route path="/portfolio" element={<Portfolio />} />
@@ -29,6 +28,8 @@ function App() {
               <Route path="/blog" element={<Blog />} />
               <Route path="/contacts" element={<Contants />} />
               <Route path="/admin" element={<AdminPanel />} />
+              <Route path="/" element={<Home />} />
+              <Route path="*" element={<Home />} />
             </Routes>
           </BrowserRouter>
         </ContactProvider>
