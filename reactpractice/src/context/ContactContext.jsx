@@ -9,7 +9,7 @@ export const ContactProvider = ({ children }) => {
   // Fetch all contacts from backend
   const fetchContacts = async () => {
     try {
-      const res = await axios.get(`${process.env.VITE_BACKEND_URL}/api/contact`);
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/contact`);
       setContacts(res.data);
     } catch (err) {
       console.error(err);
@@ -19,7 +19,7 @@ export const ContactProvider = ({ children }) => {
   // Delete a contact
   const deleteContact = async (id) => {
     try {
-      await axios.delete(`${process.env.VITE_BACKEND_URL}/contact/${id}`);
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/contact/${id}`);
       setContacts(contacts.filter(c => c._id !== id));
     } catch (err) {
       console.error(err);

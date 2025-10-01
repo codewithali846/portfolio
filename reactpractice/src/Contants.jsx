@@ -20,7 +20,7 @@ export default function Contants() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${process.env.VITE_BACKEND_URL}/api/contact`, formData);
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/contact`, formData);
       toast.success("Message sent successfully!"); // toast success
       setFormData({ name: "", phone: "", email: "", subject: "", message: "" });
       fetchMessages();
@@ -32,7 +32,7 @@ export default function Contants() {
 
   const fetchMessages = async () => {
     try {
-      const res = await axios.get(`${process.env.VITE_BACKEND_URL}/api/contact`);
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/contact`);
       setMessages(res.data);
     } catch (err) {
       console.error("Failed to fetch messages", err);
