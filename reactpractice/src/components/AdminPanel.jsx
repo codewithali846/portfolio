@@ -16,7 +16,7 @@ export default function AdminPanel() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        await axios.get("http://localhost:3000/api/auth/admin-check", {
+        await axios.get(`${process.env.VITE_BACKEND_URL}/api/auth/admin-check`, {
           withCredentials: true,
         });
         setAuthorized(true);
@@ -34,8 +34,8 @@ export default function AdminPanel() {
     e.preventDefault();
     try {
       const url = isRegister
-        ? "http://localhost:3000/api/auth/register"
-        : "http://localhost:3000/api/auth/login";
+        ? `${process.env.VITE_BACKEND_URL}/api/auth/register`
+        : `${process.env.VITE_BACKEND_URL}/api/auth/login`;
 
       const res = await axios.post(
         url,
@@ -54,7 +54,7 @@ export default function AdminPanel() {
 
   // Logout
   const handleLogout = async () => {
-    await axios.post("http://localhost:3000/api/auth/logout", {}, { withCredentials: true });
+    await axios.post(`${process.env.VITE_BACKEND_URL}/api/auth/logout`, {}, { withCredentials: true });
     setAuthorized(false);
     setEmail("");
     setPassword("");

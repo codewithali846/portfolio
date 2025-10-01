@@ -73,7 +73,7 @@ export default function Register() {
 
     try {
       setIsSubmitting(true);
-      const res = await fetch("http://localhost:3000/users/register", {
+      const res = await fetch(`${process.env.VITE_BACKEND_URL}/users/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 export const FeaturesContext = createContext();
 
 export const FeaturesProvider = ({ children }) => {
-  const API = "http://localhost:3000/features"; // ✅ tumhara backend URL
+  const API = `${process.env.VITE_BACKEND_URL}/features`; // ✅ tumhara backend URL
 
   // Default features (hardcoded 6 cards)
   const defaultFeatures = [

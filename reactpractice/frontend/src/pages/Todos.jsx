@@ -6,7 +6,7 @@ export default function Todos() {
   useEffect(() => {
     async function getData() {
       try {
-        const res = await fetch("http://localhost:5000/todos");
+        const res = await fetch(`${process.env.VITE_BACKEND_URL}/todos`);
         const data = await res.json();
 
         setTodos(data.data);

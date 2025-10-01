@@ -19,7 +19,7 @@ export default function AddTodos() {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:5000/todos", {
+      const res = await fetch(`${process.env.VITE_BACKEND_URL}/todos`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
