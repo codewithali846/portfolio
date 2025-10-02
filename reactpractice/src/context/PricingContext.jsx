@@ -1,75 +1,52 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState } from "react";
 
 export const PricingContext = createContext();
 
 export const PricingProvider = ({ children }) => {
-  const [plans, setPlans] = useState([]);
+  const [plans, setPlans] = useState([
+    {
+      _id: 1,
+      name: "Static",
+      price: "$20.00",
+      delivery: "2 Days Delivery",
+      revision: "Unlimited Revision",
+      description: "Making this the first true generator on the Internet. It uses a dictionary & plugin Development.",
+      features: ["1 Page with Elementor", "Design Customization", "Responsive Design", "Content Upload"],
+    },
+    {
+      _id: 2,
+      name: "Standard",
+      price: "$40.00",
+      delivery: "4 Days Delivery",
+      revision: "Unlimited Revision",
+      description: "Perfect for multipage Elementor websites with customization and plugins.",
+      features: ["Design Customization", "2 Plugins/Extensions", "Multipage Elementor", "Content Upload"],
+    },
+    {
+      _id: 3,
+      name: "Premium",
+      price: "$60.00",
+      delivery: "7 Days Delivery",
+      revision: "Unlimited Revision",
+      description: "Advanced package with premium design tools like Figma & XD, plus extra plugins.",
+      features: ["Design Figma", "Maintain Design", "Content Upload", "Design With XD", "8 Plugins/Extensions"],
+    },
+  ]);
 
-  const API_URL = `${import.meta.env.VITE_BACKEND_URL}/api/pricing`; // Replace with your live backend URL
-
-  // Fetch all plans
-  const fetchPlans = async () => {
-    try {
-      const res = await fetch(API_URL);
-      if (!res.ok) throw new Error("Failed to fetch plans");
-      const data = await res.json();
-      setPlans(data);
-    } catch (err) {
-      console.error(err);
-    }
+  const updatePlan = (id, updatedPlan) => {
+    setPlans(plans.map(plan => (plan._id === id ? { ...plan, ...updatedPlan } : plan)));
   };
 
-  useEffect(() => {
-    fetchPlans();
-  }, []);
-
-  // Add plan
-  const addPlan = async (plan) => {
-    try {
-      const res = await fetch(API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(plan),
-      });
-      if (!res.ok) throw new Error("Failed to add plan");
-      const data = await res.json();
-      setPlans(prev => [...prev, data]);
-    } catch (err) {
-      console.error(err);
-    }
+  const addPlan = (plan) => {
+    setPlans([...plans, { ...plan, _id: Date.now() }]);
   };
 
-  // Update plan
-  const updatePlan = async (id, updatedPlan) => {
-    try {
-      const res = await fetch(`${API_URL}/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedPlan),
-      });
-      if (!res.ok) throw new Error("Failed to update plan");
-      const data = await res.json();
-      setPlans(prev => prev.map(plan => (plan._id === id ? data : plan)));
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  // Delete plan
-  const deletePlan = async (id) => {
-    try {
-      const res = await fetch(`${API_URL}/${id}`, {
-        method: "DELETE",
-      });
-      if (!res.ok) throw new Error("Failed to delete plan");
-      setPlans(prev => prev.filter(plan => plan._id !== id));
-    } catch (err) {
-      console.error(err);
-    }
+  const deletePlan = (id) => {
+    setPlans(plans.filter(plan => plan._id !== id));
   };
 
   return (
-    <PricingContext.Provider value={{ plans, addPlan, updatePlan, deletePlan }}>
+    <PricingContext.Provider value={{ plans, updatePlan, addPlan, deletePlan }}>
       {children}
     </PricingContext.Provider>
   );
