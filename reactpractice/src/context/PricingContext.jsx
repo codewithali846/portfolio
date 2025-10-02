@@ -1,48 +1,51 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
+import axios from "axios";
 
 export const PricingContext = createContext();
 
 export const PricingProvider = ({ children }) => {
-  const [plans, setPlans] = useState([
-    {
-      _id: 1,
-      name: "Static",
-      price: "$20.00",
-      delivery: "2 Days Delivery",
-      revision: "Unlimited Revision",
-      description: "Making this the first true generator on the Internet. It uses a dictionary & plugin Development.",
-      features: ["1 Page with Elementor", "Design Customization", "Responsive Design", "Content Upload"],
-    },
-    {
-      _id: 2,
-      name: "Standard",
-      price: "$40.00",
-      delivery: "4 Days Delivery",
-      revision: "Unlimited Revision",
-      description: "Perfect for multipage Elementor websites with customization and plugins.",
-      features: ["Design Customization", "2 Plugins/Extensions", "Multipage Elementor", "Content Upload"],
-    },
-    {
-      _id: 3,
-      name: "Premium",
-      price: "$60.00",
-      delivery: "7 Days Delivery",
-      revision: "Unlimited Revision",
-      description: "Advanced package with premium design tools like Figma & XD, plus extra plugins.",
-      features: ["Design Figma", "Maintain Design", "Content Upload", "Design With XD", "8 Plugins/Extensions"],
-    },
-  ]);
+  const [plans, setPlans] = useState([]);
 
-  const updatePlan = (id, updatedPlan) => {
-    setPlans(plans.map(plan => (plan._id === id ? { ...plan, ...updatedPlan } : plan)));
+  // ✅ Fetch from backend when app loads
+  useEffect(() => {
+    fetchPlans();
+  }, []);
+
+  const fetchPlans = async () => {
+    try {
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/pricing`); // apni API ka URL
+      setPlans(res.data);
+    } catch (err) {
+      console.error("Failed to fetch plans:", err);
+    }
   };
 
-  const addPlan = (plan) => {
-    setPlans([...plans, { ...plan, _id: Date.now() }]);
+  const updatePlan = async (id, updatedPlan) => {
+    try {
+      const res = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/pricing/${id}`, updatedPlan);
+      // ✅ DB se update hone ke baad state update karo
+      setPlans(plans.map(plan => (plan._id === id ? res.data : plan)));
+    } catch (err) {
+      console.error("Update failed:", err);
+    }
   };
 
-  const deletePlan = (id) => {
-    setPlans(plans.filter(plan => plan._id !== id));
+  const addPlan = async (plan) => {
+    try {
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/pricing`, plan);
+      setPlans([...plans, res.data]);
+    } catch (err) {
+      console.error("Add failed:", err);
+    }
+  };
+
+  const deletePlan = async (id) => {
+    try {
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/pricing/${id}`);
+      setPlans(plans.filter(plan => plan._id !== id));
+    } catch (err) {
+      console.error("Delete failed:", err);
+    }
   };
 
   return (
