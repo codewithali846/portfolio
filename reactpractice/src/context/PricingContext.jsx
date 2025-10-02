@@ -1,9 +1,9 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 export const PricingContext = createContext();
 
 export const PricingProvider = ({ children }) => {
-  const [plans, setPlans] = useState([
+  const initialPlans = [
     {
       _id: 1,
       name: "Static",
@@ -31,7 +31,18 @@ export const PricingProvider = ({ children }) => {
       description: "Advanced package with premium design tools like Figma & XD, plus extra plugins.",
       features: ["Design Figma", "Maintain Design", "Content Upload", "Design With XD", "8 Plugins/Extensions"],
     },
-  ]);
+  ];
+
+  const [plans, setPlans] = useState(() => {
+    // Agar localStorage mein data hai, use karo, warna initialPlans
+    const storedPlans = localStorage.getItem("plans");
+    return storedPlans ? JSON.parse(storedPlans) : initialPlans;
+  });
+
+  // localStorage update karna jab plans change ho
+  useEffect(() => {
+    localStorage.setItem("plans", JSON.stringify(plans));
+  }, [plans]);
 
   const updatePlan = (id, updatedPlan) => {
     setPlans(plans.map(plan => (plan._id === id ? { ...plan, ...updatedPlan } : plan)));
