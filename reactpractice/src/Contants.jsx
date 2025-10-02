@@ -121,19 +121,7 @@ export default function Contants() {
             </button>
           </form>
 
-          {/* Display fetched messages */}
-          <div className="mt-6">
-            <h2 className="text-2xl font-bold mb-4">Previous Messages</h2>
-            <div className="flex flex-col gap-4">
-              {messages.map((msg) => (
-                <div key={msg._id} className="bg-gray-800 p-4 rounded shadow">
-                  <p><strong>{msg.name}</strong> ({msg.email})</p>
-                  <p className="italic">{msg.subject}</p>
-                  <p>{msg.message}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+          
         </div>
       </div>
     </div>
