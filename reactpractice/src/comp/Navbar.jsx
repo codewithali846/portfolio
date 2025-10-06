@@ -7,8 +7,6 @@ const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const location = useLocation();
 
-  const toggleMenu = () => setShowMenu(!showMenu);
-
   const navLinks = [
     { path: "/", label: "HOME" },
     { path: "/features", label: "FEATURES" },
@@ -20,7 +18,7 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="fixed top-0 left-0 z-50 w-full backdrop-blur-md bg-black/70 border-b border-blue-900 shadow-lg transition-all duration-300">
+    <div className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-black/70 border-b border-blue-900 shadow-lg">
       <div className="flex justify-between items-center h-20 px-6 lg:px-12">
 
         {/* Logo */}
@@ -37,7 +35,7 @@ const Navbar = () => {
 
         {/* Desktop Links */}
         <nav className="hidden lg:flex gap-8 text-sm font-semibold">
-          {navLinks.map((link) => (
+          {navLinks.map(link => (
             <Link
               key={link.path}
               to={link.path}
@@ -54,12 +52,9 @@ const Navbar = () => {
 
         {/* Right Side */}
         <div className="flex items-center gap-4">
-          {/* Cart */}
           <div className="relative bg-white h-10 w-10 rounded-full flex items-center justify-center shadow-md cursor-pointer hover:scale-110 transition-transform duration-300">
             <IoCartOutline className="text-2xl text-black" />
           </div>
-
-          {/* Buy Now */}
           <Link
             to="/buynow"
             className="px-4 h-10 flex items-center justify-center text-sm font-semibold text-white rounded-md bg-gradient-to-br from-blue-900 to-blue-300 shadow-lg hover:scale-105 transition-transform duration-300"
@@ -70,34 +65,47 @@ const Navbar = () => {
           {/* Mobile Hamburger */}
           <div
             className="lg:hidden h-10 w-10 flex items-center justify-center rounded-full shadow-md bg-white cursor-pointer hover:scale-110 transition-transform duration-300"
-            onClick={toggleMenu}
+            onClick={() => setShowMenu(true)}
           >
-            {showMenu ? <FaTimes className="text-2xl text-black" /> : <FaBars className="text-2xl text-black" />}
+            <FaBars className="text-2xl text-black" />
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      <div
-        className={`fixed top-20 left-0 h-[calc(100vh-5rem)] w-3/4 sm:w-1/2 bg-gradient-to-br from-blue-900 to-blue-300 p-6 flex flex-col gap-6 transform transition-transform duration-300 z-40 ${
-          showMenu ? "translate-x-0" : "-translate-x-full"
-        }`}
-      >
-        {navLinks.map((link) => (
-          <Link
-            key={link.path}
-            to={link.path}
+      {/* Mobile Menu Overlay */}
+      {showMenu && (
+        <>
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
             onClick={() => setShowMenu(false)}
-            className={`text-lg font-medium transition-all duration-300 ${
-              location.pathname === link.path
-                ? "text-white font-bold"
-                : "text-black hover:text-white"
-            }`}
-          >
-            {link.label}
-          </Link>
-        ))}
-      </div>
+          ></div>
+
+          {/* Sliding Menu */}
+          <div className="fixed top-0 left-0 h-full w-3/4 sm:w-1/2 bg-gradient-to-br from-blue-900 to-blue-300 z-50 p-6 flex flex-col gap-6 transform transition-transform duration-300">
+            <div
+              className="self-end mb-6 cursor-pointer"
+              onClick={() => setShowMenu(false)}
+            >
+              <FaTimes className="text-2xl text-white" />
+            </div>
+            {navLinks.map(link => (
+              <Link
+                key={link.path}
+                to={link.path}
+                onClick={() => setShowMenu(false)}
+                className={`text-lg font-medium transition-colors duration-300 ${
+                  location.pathname === link.path
+                    ? "text-white font-bold"
+                    : "text-white hover:text-blue-200"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 };
