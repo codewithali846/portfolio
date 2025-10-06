@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { IoCartOutline } from "react-icons/io5";
 import { FaBars, FaTimes } from "react-icons/fa";
 
 const Navbar = () => {
@@ -26,7 +25,7 @@ const Navbar = () => {
           <img
             src="/photo.jpg"
             alt="logo"
-            className="h-14 w-14 rounded-full object-cover border-2 border-white shadow-md transform hover:scale-105 transition duration-300"
+            className="h-16 w-16 rounded-full object-cover border-2 border-white shadow-md transform hover:scale-105 transition duration-300"
           />
           <span className="text-xl font-bold bg-gradient-to-br from-blue-900 to-blue-300 bg-clip-text text-transparent">
             FULLSTACK
@@ -50,25 +49,12 @@ const Navbar = () => {
           ))}
         </nav>
 
-        {/* Right Side */}
-        <div className="flex items-center gap-4 z-50">
-          <div className="relative bg-white h-10 w-10 rounded-full flex items-center justify-center shadow-md cursor-pointer hover:scale-110 transition-transform duration-300">
-            <IoCartOutline className="text-2xl text-black" />
-          </div>
-          <Link
-            to="/buynow"
-            className="px-4 h-10 flex items-center justify-center text-sm font-semibold text-white rounded-md bg-gradient-to-br from-blue-900 to-blue-300 shadow-lg hover:scale-105 transition-transform duration-300"
-          >
-            BUY NOW
-          </Link>
-
-          {/* Mobile Hamburger */}
-          <div
-            className="lg:hidden h-10 w-10 flex items-center justify-center rounded-full shadow-md bg-white cursor-pointer hover:scale-110 transition-transform duration-300"
-            onClick={() => setShowMenu(true)}
-          >
-            <FaBars className="text-2xl text-black" />
-          </div>
+        {/* Mobile Hamburger */}
+        <div
+          className="lg:hidden h-10 w-10 flex items-center justify-center rounded-full shadow-md bg-white cursor-pointer hover:scale-110 transition-transform duration-300 z-50"
+          onClick={() => setShowMenu(true)}
+        >
+          <FaBars className="text-2xl text-black" />
         </div>
       </div>
 
@@ -81,14 +67,14 @@ const Navbar = () => {
             onClick={() => setShowMenu(false)}
           ></div>
 
-          {/* Sliding Menu */}
-          <div className="fixed top-0 left-0 h-full w-3/4 max-w-sm sm:w-1/2 bg-gradient-to-br from-blue-900 to-blue-300 z-50 p-6 flex flex-col gap-6 transform transition-transform duration-300">
+          {/* Fullscreen Sliding Menu */}
+          <div className="fixed top-0 left-0 h-full w-full sm:w-3/4 max-w-sm bg-gradient-to-br from-blue-900 to-blue-300 z-50 p-6 flex flex-col gap-8 transform transition-transform duration-300">
             {/* Close button */}
             <div
               className="self-end mb-6 cursor-pointer"
               onClick={() => setShowMenu(false)}
             >
-              <FaTimes className="text-2xl text-white" />
+              <FaTimes className="text-3xl text-white" />
             </div>
 
             {/* Links */}
@@ -97,7 +83,7 @@ const Navbar = () => {
                 key={link.path}
                 to={link.path}
                 onClick={() => setShowMenu(false)}
-                className={`text-lg font-medium transition-colors duration-300 ${
+                className={`text-xl font-semibold transition-colors duration-300 ${
                   location.pathname === link.path
                     ? "text-white font-bold"
                     : "text-white hover:text-blue-200"
