@@ -22,7 +22,7 @@ const Navbar = () => {
       <div className="flex justify-between items-center h-20 px-6 lg:px-12">
 
         {/* Logo */}
-        <div className="flex items-center gap-2 cursor-pointer">
+        <div className="flex items-center gap-2 cursor-pointer z-50">
           <img
             src="/photo.jpg"
             alt="logo"
@@ -34,7 +34,7 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Links */}
-        <nav className="hidden lg:flex gap-8 text-sm font-semibold">
+        <nav className="hidden lg:flex gap-8 text-sm font-semibold z-50">
           {navLinks.map(link => (
             <Link
               key={link.path}
@@ -51,7 +51,7 @@ const Navbar = () => {
         </nav>
 
         {/* Right Side */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 z-50">
           <div className="relative bg-white h-10 w-10 rounded-full flex items-center justify-center shadow-md cursor-pointer hover:scale-110 transition-transform duration-300">
             <IoCartOutline className="text-2xl text-black" />
           </div>
@@ -82,13 +82,16 @@ const Navbar = () => {
           ></div>
 
           {/* Sliding Menu */}
-          <div className="fixed top-0 left-0 h-full w-3/4 sm:w-1/2 bg-gradient-to-br from-blue-900 to-blue-300 z-50 p-6 flex flex-col gap-6 transform transition-transform duration-300">
+          <div className="fixed top-0 left-0 h-full w-3/4 max-w-sm sm:w-1/2 bg-gradient-to-br from-blue-900 to-blue-300 z-50 p-6 flex flex-col gap-6 transform transition-transform duration-300">
+            {/* Close button */}
             <div
               className="self-end mb-6 cursor-pointer"
               onClick={() => setShowMenu(false)}
             >
               <FaTimes className="text-2xl text-white" />
             </div>
+
+            {/* Links */}
             {navLinks.map(link => (
               <Link
                 key={link.path}
