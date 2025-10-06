@@ -25,7 +25,7 @@ const Navbar = () => {
           <img
             src="/photo.jpg"
             alt="logo"
-            className="h-16 w-16 rounded-full object-cover border-2 border-white shadow-md transform hover:scale-105 transition duration-300"
+            className="h-16 w-16 rounded-full object-cover object-top border-2 border-white shadow-md transform hover:scale-105 transition duration-300"
           />
           <span className="text-xl font-bold bg-gradient-to-br from-blue-900 to-blue-300 bg-clip-text text-transparent">
             FULLSTACK
