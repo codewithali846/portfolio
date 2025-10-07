@@ -7,7 +7,7 @@ export const PricingProvider = ({ children }) => {
     {
       _id: 1,
       name: "Static",
-      price: "$20.00",
+      price: "$5",
       delivery: "2 Days Delivery",
       revision: "Unlimited Revision",
       description: "Making this the first true generator on the Internet. It uses a dictionary & plugin Development.",
@@ -16,7 +16,7 @@ export const PricingProvider = ({ children }) => {
     {
       _id: 2,
       name: "Standard",
-      price: "$40.00",
+      price: "$10",
       delivery: "4 Days Delivery",
       revision: "Unlimited Revision",
       description: "Perfect for multipage Elementor websites with customization and plugins.",
@@ -25,7 +25,7 @@ export const PricingProvider = ({ children }) => {
     {
       _id: 3,
       name: "Premium",
-      price: "$60.00",
+      price: "$15",
       delivery: "7 Days Delivery",
       revision: "Unlimited Revision",
       description: "Advanced package with premium design tools like Figma & XD, plus extra plugins.",
