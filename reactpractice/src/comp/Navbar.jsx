@@ -17,31 +17,31 @@ const Navbar = () => {
   ];
 
   return (
-    <>
-      {/* Side Navbar for desktop */}
-      <div className="fixed top-0 left-0 h-full w-20 lg:w-64 bg-gradient-to-b from-blue-900 to-blue-300 shadow-lg flex flex-col items-center lg:items-start p-4 z-50">
+    <div className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-black/70 border-b border-blue-900 shadow-lg">
+      <div className="flex justify-between items-center h-20 px-6 lg:px-12">
+
         {/* Logo */}
-        <div className="flex flex-col items-center lg:items-start mb-8 cursor-pointer">
+        <div className="flex items-center gap-2 cursor-pointer z-50">
           <img
             src="/photo.jpg"
             alt="logo"
-            className="h-16 w-16 rounded-full object-cover border-2 border-white shadow-md mb-2"
+            className="h-16 w-16 rounded-full object-cover object-top border-2 border-white shadow-md transform hover:scale-105 transition duration-300"
           />
-          <span className="hidden lg:block text-xl font-bold text-white">
+          <span className="text-xl font-bold bg-gradient-to-br from-blue-900 to-blue-300 bg-clip-text text-transparent">
             FULLSTACK
           </span>
         </div>
 
         {/* Desktop Links */}
-        <nav className="flex flex-col gap-6 transition-all duration-300 px-2 py-1 rounded-md w-full text-center lg:text-left ">
+        <nav className="hidden lg:flex gap-8 text-sm font-semibold z-50">
           {navLinks.map(link => (
             <Link
               key={link.path}
               to={link.path}
-              className={`${
+              className={`relative transition-all duration-300 px-1 ${
                 location.pathname === link.path
-                  ? "bg-white/20 text-white font-bold"
-                  : "text-white hover:bg-white/10"
+                  ? "text-blue-400 after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:bg-blue-400"
+                  : "text-white hover:text-blue-400"
               }`}
             >
               {link.label}
@@ -51,14 +51,14 @@ const Navbar = () => {
 
         {/* Mobile Hamburger */}
         <div
-          className="lg:hidden mt-auto mb-4 cursor-pointer"
+          className="lg:hidden h-10 w-10 flex items-center justify-center rounded-full shadow-md bg-white cursor-pointer hover:scale-110 transition-transform duration-300 z-50"
           onClick={() => setShowMenu(true)}
         >
-          <FaBars className="text-2xl text-white" />
+          <FaBars className="text-2xl text-black" />
         </div>
       </div>
 
-      {/* Mobile Sliding Side Menu */}
+      {/* Mobile Menu Overlay */}
       {showMenu && (
         <>
           {/* Backdrop */}
@@ -67,17 +67,17 @@ const Navbar = () => {
             onClick={() => setShowMenu(false)}
           ></div>
 
-          {/* Sliding Menu */}
-          <div className="fixed top-0 left-0 h-full w-3/4 max-w-sm bg-gradient-to-b from-blue-900 to-blue-300 z-50 p-6 flex flex-col gap-8 transform transition-transform duration-300">
+          {/* Fullscreen Sliding Menu */}
+          <div className="fixed top-0 left-0 flex-col h-full w-full sm:w-3/4 max-w-sm bg-gradient-to-br from-blue-900 to-blue-300 z-50 p-6 flex  gap-8 transform transition-transform duration-300">
             {/* Close button */}
             <div
-              className="self-end cursor-pointer"
+              className="self-end mb-6 cursor-pointer"
               onClick={() => setShowMenu(false)}
             >
               <FaTimes className="text-3xl text-white" />
             </div>
 
-            {/* Mobile Links */}
+            {/* Links */}
             {navLinks.map(link => (
               <Link
                 key={link.path}
@@ -95,7 +95,7 @@ const Navbar = () => {
           </div>
         </>
       )}
-    </>
+    </div>
   );
 };
 
