@@ -61,12 +61,12 @@ const Navbar = () => {
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm"
             onClick={() => setShowMenu(false)}
           ></div>
 
           {/* Sidebar below navbar */}
-          <div className="fixed top-20 left-0 h-[calc(100%-5rem)] w-3/4 max-w-sm bg-gradient-to-br from-blue-900 to-blue-300 z-50 p-6 flex flex-col gap-8 transform transition-transform duration-300">
+          <div className="fixed top-20 left-0 h-[calc(100%-5rem)] w-3/5 max-w-sm bg-gradient-to-br from-blue-900 to-blue-300 z-50 p-6 flex flex-col gap-8 transform transition-transform duration-300">
             {/* Close button */}
             <div
               className="self-end mb-6 cursor-pointer"
