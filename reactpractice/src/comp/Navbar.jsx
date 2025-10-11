@@ -33,12 +33,12 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Links */}
-        <nav className="flex flex-col gap-6">
+        <nav className="flex flex-col gap-6 transition-all duration-300 px-2 py-1 rounded-md w-full text-center lg:text-left ">
           {navLinks.map(link => (
             <Link
               key={link.path}
               to={link.path}
-              className={`transition-all duration-300 px-2 py-1 rounded-md w-full text-center lg:text-left ${
+              className={`${
                 location.pathname === link.path
                   ? "bg-white/20 text-white font-bold"
                   : "text-white hover:bg-white/10"
