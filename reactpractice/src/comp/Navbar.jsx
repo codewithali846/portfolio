@@ -48,7 +48,7 @@ const Navbar = () => {
         </nav>
       </div>
 
-      {/* Mobile Navbar */}
+      {/* Mobile Top Navbar */}
       <div className="lg:hidden fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-black/70 border-b border-blue-900 shadow-lg">
         <div className="flex justify-between items-center h-20 px-6">
           {/* Logo */}
