@@ -83,7 +83,7 @@ const Navbar = () => {
                 key={link.path}
                 to={link.path}
                 onClick={() => setShowMenu(false)}
-                className={`text-xl font-semibold transition-all duration-300 px-4 py-2 top-0 left-0 top-24 rounded-md w-full ${
+                className={`text-xl font-semibold transition-all duration-300 px-4 py-2  left-0 top-24 rounded-md w-full ${
                   location.pathname === link.path
                     ? "bg-white/30 text-white font-bold"
                     : "text-white hover:bg-white/20"
