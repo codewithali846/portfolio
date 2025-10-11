@@ -18,38 +18,8 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Desktop Sidebar */}
-      <div className="hidden lg:flex fixed top-0 left-0 h-full w-64 bg-gradient-to-b from-blue-900 to-blue-300 shadow-lg flex-col items-start p-6 z-50">
-        {/* Logo */}
-        <div className="flex items-center gap-2 mb-8 cursor-pointer">
-          <img
-            src="/photo.jpg"
-            alt="logo"
-            className="h-16 w-16 rounded-full object-cover border-2 border-white shadow-md"
-          />
-          <span className="text-xl font-bold text-white">FULLSTACK</span>
-        </div>
-
-        {/* Links */}
-        <nav className="flex flex-col gap-2 w-full">
-          {navLinks.map(link => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={`px-4 py-2 rounded-md w-full transition-all duration-300 ${
-                location.pathname === link.path
-                  ? "bg-white/30 text-white font-bold"
-                  : "text-white hover:bg-white/20"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-      </div>
-
       {/* Mobile Hamburger */}
-      <div className="lg:hidden fixed top-4 left-4 z-50">
+      <div className="fixed top-4 left-4 z-50 lg:hidden">
         <div
           className="h-10 w-10 flex items-center justify-center rounded-full shadow-md bg-white cursor-pointer hover:scale-110 transition-transform duration-300"
           onClick={() => setShowMenu(true)}
@@ -83,7 +53,7 @@ const Navbar = () => {
                 key={link.path}
                 to={link.path}
                 onClick={() => setShowMenu(false)}
-                className={`text-xl font-semibold transition-all duration-300 px-4 py-2  left-0 top-24 rounded-md w-full ${
+                className={`text-xl font-semibold transition-all duration-300 px-4 py-2 rounded-md w-full ${
                   location.pathname === link.path
                     ? "bg-white/30 text-white font-bold"
                     : "text-white hover:bg-white/20"
