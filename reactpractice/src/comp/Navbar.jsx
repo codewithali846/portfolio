@@ -17,46 +17,27 @@ const Navbar = () => {
   ];
 
   return (
-    <>
-      {/* Top Navbar */}
-      <div className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-black/70 border-b border-blue-900 shadow-lg">
-        <div className="flex justify-between items-center h-20 px-6 lg:px-12">
-          {/* Logo */}
-          <div className="flex items-center gap-2 cursor-pointer">
-            <img
-              src="/photo.jpg"
-              alt="logo"
-              className="h-16 w-16 rounded-full object-cover border-2 border-white shadow-md transform hover:scale-105 transition duration-300"
-            />
-            <span className="text-xl font-bold bg-gradient-to-br from-blue-900 to-blue-300 bg-clip-text text-transparent">
-              FULLSTACK
-            </span>
-          </div>
+    <div className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-black/70 border-b border-blue-900 shadow-lg">
+      <div className="flex justify-between items-center h-20 px-6 lg:px-12">
 
-          {/* Desktop Links */}
-          <nav className="hidden lg:flex gap-8 text-sm font-semibold">
-            {navLinks.map(link => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`relative transition-all duration-300 px-1 ${
-                  location.pathname === link.path
-                    ? "text-blue-400 after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:bg-blue-400"
-                    : "text-white hover:text-blue-400"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
+        {/* Logo */}
+        <div className="flex items-center gap-2 cursor-pointer z-50">
+          <img
+            src="/photo.jpg"
+            alt="logo"
+            className="h-16 w-16 rounded-full object-cover object-top border-2 border-white shadow-md transform hover:scale-105 transition duration-300"
+          />
+          <span className="text-xl font-bold bg-gradient-to-br from-blue-900 to-blue-300 bg-clip-text text-transparent">
+            FULLSTACK
+          </span>
+        </div>
 
-          {/* Mobile Hamburger */}
-          <div
-            className="lg:hidden h-10 w-10 flex items-center justify-center rounded-full shadow-md bg-white cursor-pointer hover:scale-110 transition-transform duration-300"
-            onClick={() => setShowMenu(true)}
-          >
-            <FaBars className="text-2xl text-black" />
-          </div>
+        {/* Mobile Hamburger */}
+        <div
+          className="lg:hidden h-10 w-10 flex items-center justify-center rounded-full shadow-md bg-white cursor-pointer hover:scale-110 transition-transform duration-300 z-50"
+          onClick={() => setShowMenu(true)}
+        >
+          <FaBars className="text-2xl text-black" />
         </div>
       </div>
 
@@ -97,7 +78,7 @@ const Navbar = () => {
           </div>
         </>
       )}
-    </>
+    </div>
   );
 };
 
