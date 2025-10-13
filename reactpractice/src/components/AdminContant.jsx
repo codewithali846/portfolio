@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { ContactContext } from "../context/ContactContext";
-import { toast, Toaster } from "react-hot-toast"; 
+import { toast, Toaster } from "react-hot-toast"; // import toast
 
 export default function AdminContant() {
   const { contacts, fetchContacts, deleteContact } = useContext(ContactContext);
