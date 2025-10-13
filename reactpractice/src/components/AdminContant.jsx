@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { ContactContext } from "../context/ContactContext";
-import { toast, Toaster } from "react-hot-toast"; // import toast
+import { toast, Toaster } from "react-hot-toast"; 
 
 export default function AdminContant() {
   const { contacts, fetchContacts, deleteContact } = useContext(ContactContext);
@@ -11,9 +11,9 @@ export default function AdminContant() {
 
   const handleDelete = async (id) => {
     try {
-      await deleteContact(id); // call your existing delete function
+      await deleteContact(id); 
       toast.success("Contact deleted successfully!");
-      fetchContacts(); // refresh the contacts list
+      fetchContacts(); 
     } catch (err) {
       console.error(err);
       toast.error("Failed to delete contact.");
@@ -22,7 +22,7 @@ export default function AdminContant() {
 
   return (
     <div className="p-8 py-24">
-      {/* Toast container */}
+    
       <Toaster position="top-right" />
       
       <h2 className="text-2xl font-bold mb-6">Admin Contacts Panel</h2>

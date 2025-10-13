@@ -19,7 +19,7 @@ export const ContactProvider = ({ children }) => {
   // Delete a contact
   const deleteContact = async (id) => {
     try {
-      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/contact/${id}`); // ✅ fixed route
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/contact/${id}`); 
       setContacts(contacts.filter(c => c._id !== id));
     } catch (err) {
       console.error(err);
