@@ -34,8 +34,8 @@ export default function AdminPanel() {
     e.preventDefault();
     try {
       const url = isRegister
-        ? `${import.meta.env.API_BACKEND}/api/auth/register`
-        : `${import.meta.env.API_BACKEND}/api/auth/login`;
+        ? `${import.meta.env.VITE_BACKEND_URL}/api/auth/register`
+        : `${import.meta.env.VITE_BACKEND_URL}/api/auth/login`;
 
       const res = await axios.post(
         url,
@@ -54,7 +54,7 @@ export default function AdminPanel() {
 
   // Logout
   const handleLogout = async () => {
-    await axios.post(`${import.meta.env.API_BACKEND}/api/auth/logout`, {}, { withCredentials: true });
+    await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/logout`, {}, { withCredentials: true });
     setAuthorized(false);
     setEmail("");
     setPassword("");

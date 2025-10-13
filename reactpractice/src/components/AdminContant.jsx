@@ -22,7 +22,7 @@ export default function AdminContant() {
 
   return (
     <div className="p-8 py-24">
-    
+      {/* Toast container */}
       <Toaster position="top-right" />
       
       <h2 className="text-2xl font-bold mb-6">Admin Contacts Panel</h2>
