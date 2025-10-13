@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 export const FeaturesContext = createContext();
 
 export const FeaturesProvider = ({ children }) => {
-  const API = `${import.meta.env.VITE_BACKEND_URL}/features`;
+  const API = `${import.meta.env.REACT_APP_API_BACKEND}/features`;
 
  
   const defaultFeatures = [
