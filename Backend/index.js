@@ -15,23 +15,10 @@ import NstRoutes from "./routes/NstRoute.js";
 dotenv.config();
 const app = express();
 
-const allowedOrigins = [
-  "https://ahsan-ali-portfolio.vercel.app",
-  "http://localhost:3000"  // local dev
-];
-
-app.use(
-  cors({
-    origin: function(origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    credentials: true,
-  })
-);
+// Middlewares
+ app.use( cors({ origin: "https://ahsan-ali-portfolio.vercel.app",
+   credentials: true, })
+   );
 
 app.use(express.json());
 app.use(cookieParser());
